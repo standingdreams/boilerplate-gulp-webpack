@@ -22,7 +22,7 @@
     "babel-register": "^6.26.0",
     "css-mqpacker": "^6.0.2",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^3.9.2",
     "gulp-plumber": "^1.2.0",
@@ -32,5 +32,9 @@
     "sass-module-importer": "^1.4.0",
     "webpack": "^3.10.0",
     "webpack-stream": "^4.0.0"
+  },
+  "dependencies": {
+    "mappy-breakpoints": "^0.2.3",
+    "normalize.css": "^7.0.0"
   }
 }

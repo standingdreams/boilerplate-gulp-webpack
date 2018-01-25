@@ -1,15 +1,16 @@
 "use strict";
 import gulp from "gulp";
 import plumber from "gulp-plumber";
-import {} from "del";
+import del from "del";
 
 // Styling
-import sass from "gulp-sass";
-import {} from "css-mqpacker";
+import autoprefixer from "autoprefixer";
 import cleanCSS from "gulp-clean-css";
+import cssMQPacker from "css-mqpacker";
+import moduleImporter from "sass-module-importer";
 import postCSS from "gulp-postcss";
+import sass from "gulp-sass";
 import sourcemaps from "gulp-sourcemaps";
-import {} from "sass-module-importer";
 
 const config = {
   build: {
@@ -21,25 +22,35 @@ const config = {
     prodPath: "./build/_assets/"
   },
   styles: {
-    srcPath: "./_src/scss/",
-    dest: "./build/_assets/css/",
-    stylesFile: ".styles.scss",
-    allstylesFile: ".**/*.scss"
+    srcPath: "./src/scss/",
+    dest: "build/_assets/css",
+    stylesFile: "styles.scss",
+    allstylesFile: ".**/*.scss",
+    postCSSPlugins: [
+      autoprefixer({ browsers: "last 4 versions" }),
+      cssMQPacker({ sort: true })
+    ]
   }
 };
 
-export function clean(path) {
-  return del([path]);
+export function clean() {
+  return del([config.assets.localPath]);
 }
 
-gulp.task("styles:build", () => {
+export function styles() {
   return gulp
-    .src(config.srcPath.stylesFile)
+    .src(`${config.styles.srcPath}${config.styles.stylesFile}`)
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass({ importer: moduleImporter() }))
-    .pipe(postCSS())
+    .pipe(postCSS(config.styles.postCSSPlugins))
     .pipe(cleanCSS())
-    .pipe(souremaps.write("."))
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(config.styles.dest));
-});
+}
+
+gulp.task("styles:build", styles);
+
+const buildStyles = gulp.series(clean, "styles:build");
+
+gulp.task("default", buildStyles);
