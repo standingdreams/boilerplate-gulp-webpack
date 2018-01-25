@@ -1,5 +1,5 @@
 ### Project Ignores ###
-/build_local/
+/public/_assets/
 
 ### Bower ###
 bower_components

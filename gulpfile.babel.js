@@ -50,6 +50,4 @@ gulp.task("styles:build", styles);
 
 const buildStyles = gulp.series(clean, "styles:build");
 
-// gulp.task("default", buildStyles);
-
 export default buildStyles;
