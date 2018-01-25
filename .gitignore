@@ -1,3 +1,6 @@
+### Project Ignores ###
+/build_local/
+
 ### Bower ###
 bower_components
 .bower-cache
