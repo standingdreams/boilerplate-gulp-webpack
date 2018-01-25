@@ -17,13 +17,10 @@ const config = {
     prod: "./build",
     local: "./build_local"
   },
-  assets: {
-    localPath: "./build_local/_assets/",
-    prodPath: "./build/_assets/"
-  },
+  assets: "./public/_assets/",
   styles: {
     srcPath: "./src/scss/",
-    dest: "build/_assets/css",
+    dest: "public/_assets/css",
     stylesFile: "styles.scss",
     allstylesFile: ".**/*.scss",
     postCSSPlugins: [
@@ -34,7 +31,7 @@ const config = {
 };
 
 export function clean() {
-  return del([config.assets.localPath]);
+  return del([config.assets]);
 }
 
 export function styles() {
@@ -53,4 +50,6 @@ gulp.task("styles:build", styles);
 
 const buildStyles = gulp.series(clean, "styles:build");
 
-gulp.task("default", buildStyles);
+// gulp.task("default", buildStyles);
+
+export default buildStyles;
