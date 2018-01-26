@@ -12,6 +12,9 @@ import postCSS from "gulp-postcss";
 import sass from "gulp-sass";
 import sourcemaps from "gulp-sourcemaps";
 
+// Scripts
+import webpack from "webpack-stream";
+
 const config = {
   build: {
     prod: "./build",
@@ -20,13 +23,18 @@ const config = {
   assets: "./public/_assets/",
   styles: {
     srcPath: "./src/scss/",
-    dest: "public/_assets/css",
+    dest: "./public/_assets/css",
     stylesFile: "styles.scss",
     allstylesFile: ".**/*.scss",
     postCSSPlugins: [
       autoprefixer({ browsers: "last 4 versions" }),
       cssMQPacker({ sort: true })
     ]
+  },
+  scripts: {
+    srcPath: "./src/js/",
+    dest: "./public/_assets/js",
+    jsFile: "index.js"
   }
 };
 
@@ -44,6 +52,13 @@ export function styles() {
     .pipe(cleanCSS())
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(config.styles.dest));
+}
+
+export function scripts() {
+  return gulp
+    .src(`${config.scripts.srcPath}${config.scripts.jsFile}`)
+    .pipe(webpack(require("./webpack.config")))
+    .pipe(gulp.dest(config.scripts.dest));
 }
 
 gulp.task("styles:build", styles);

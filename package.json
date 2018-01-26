@@ -15,9 +15,11 @@
   "bugs": {
     "url": "https://github.com/standingdreams/boilerplate-gulp-webpack/issues"
   },
-  "homepage": "https://github.com/standingdreams/boilerplate-gulp-webpack#readme",
+  "homepage":
+    "https://github.com/standingdreams/boilerplate-gulp-webpack#readme",
   "devDependencies": {
     "autoprefixer": "^7.2.5",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "css-mqpacker": "^6.0.2",
