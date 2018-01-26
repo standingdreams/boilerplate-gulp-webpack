@@ -62,7 +62,8 @@ export function scripts() {
 }
 
 gulp.task("styles:build", styles);
+gulp.task("scripts:build", scripts);
 
-const buildStyles = gulp.series(clean, "styles:build");
+const build = gulp.series(clean, "styles:build", "scripts:build");
 
-export default buildStyles;
+export default build;

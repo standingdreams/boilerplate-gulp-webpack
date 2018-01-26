@@ -26,10 +26,6 @@ let config = {
       }
     ]
   }
-  // devServer: {
-  //   contentBase: path.resolve(__dirname, "./public/"),
-  //   hot: true
-  // }
 };
 
 module.exports = config;
