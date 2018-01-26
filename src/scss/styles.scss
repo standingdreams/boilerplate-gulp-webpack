@@ -13,8 +13,6 @@ $breakpoints: (
   'phone-tiny': 320px
 );
 
-@include mappy-bp(tablet-vert) {
-  body {
-    border: 1px solid blue;
-  }
+h1 {
+  border: 1px solid red;
 }

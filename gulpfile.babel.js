@@ -12,20 +12,33 @@ import postCSS from "gulp-postcss";
 import sass from "gulp-sass";
 import sourcemaps from "gulp-sourcemaps";
 
+// BrowserSync
+import browserSync from "browser-sync";
+const server = browserSync.create();
+function reload(done) {
+  server.reload();
+  done();
+}
+
+function serve(done) {
+  server.init({
+    server: {
+      baseDir: "./public"
+    }
+  });
+  done();
+}
+
 // Scripts
 import webpack from "webpack-stream";
-
 const config = {
-  build: {
-    prod: "./build",
-    local: "./build_local"
-  },
+  base: "./public",
   assets: "./public/_assets/",
   styles: {
     srcPath: "./src/scss/",
     dest: "./public/_assets/css",
     stylesFile: "styles.scss",
-    allstylesFile: ".**/*.scss",
+    allStyleFiles: "./src/scss/**/*.scss",
     postCSSPlugins: [
       autoprefixer({ browsers: "last 4 versions" }),
       cssMQPacker({ sort: true })
@@ -34,6 +47,7 @@ const config = {
   scripts: {
     srcPath: "./src/js/",
     dest: "./public/_assets/js",
+    allScriptFiles: "./src/js/**/*.js",
     jsFile: "index.js"
   }
 };
@@ -51,7 +65,8 @@ export function styles() {
     .pipe(postCSS(config.styles.postCSSPlugins))
     .pipe(cleanCSS())
     .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest(config.styles.dest));
+    .pipe(gulp.dest(config.styles.dest))
+    .pipe(server.stream());
 }
 
 export function scripts() {
@@ -64,6 +79,16 @@ export function scripts() {
 gulp.task("styles:build", styles);
 gulp.task("scripts:build", scripts);
 
-const build = gulp.series(clean, "styles:build", "scripts:build");
+function watch() {
+  gulp.watch(config.styles.allStyleFiles, gulp.series("styles:build"));
+  gulp.watch(
+    config.scripts.allScriptFiles,
+    gulp.series("scripts:build", reload)
+  );
+  gulp.watch(`${config.base}/*.html`, gulp.series(scripts, reload));
+  gulp.watch(`${config.base}/*.php`, gulp.series(scripts, reload));
+}
+
+const build = gulp.series(clean, "styles:build", "scripts:build", serve, watch);
 
 export default build;
