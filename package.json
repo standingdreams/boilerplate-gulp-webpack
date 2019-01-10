@@ -43,6 +43,7 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
+    "jquery": "^3.3.1",
     "mappy-breakpoints": "^0.2.3",
     "normalize.css": "^7.0.0"
   }
