@@ -10,6 +10,7 @@ This is a starting place for projects using Gulp and webpack.
 Clone the repository and run `npm install` in the terminal from the directory to download all dependencies.
 
 ## Development
+
 ### CSS Guidelines
 Mappy Breakpoints is included in this build to manage media query breakpoints. It is included via NPM and imported into `/_src/scss/styles.scss`.
 
@@ -17,7 +18,7 @@ Mappy Breakpoints is included in this build to manage media query breakpoints. I
 webpack is being used to bundle all JavaScript modules. You can import JS dependencies at `/_src/index.js`.
 
 ## Future Considerations/To-Dos
-- [ ] Deploy to Heroku
 - [ ] Add environment differences
+- [ ] Add if/else for serve in gulpfile.babel.js
 - [ ] Revisit .htaccess file
 - [ ] Add Tree shaking
