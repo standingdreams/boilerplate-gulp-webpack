@@ -42,7 +42,7 @@ const config = {
     allStyleFiles: `${configSource}/scss/**/*.scss`,
     scssFile: 'styles.scss',
   },
-  pleeeaseOpt = {
+  pleeeaseOpt: {
     browsers: ['last 4 versions'],
     minifier: false,
   }
