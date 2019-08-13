@@ -21,6 +21,10 @@ import eslint from 'gulp-eslint';
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config';
 
+const configPublic = "./public";
+const configSource = "./src";
+const server = browserSync.create();
+
 const config = {
   localsite: 'http://tosca.local:8888',
   assets: {
@@ -47,10 +51,6 @@ const config = {
     minifier: false,
   }
 };
-
-const configPublic = "./public";
-const configSource = "./src";
-const server = browserSync.create();
 
 const deleteDirs = [`${config.assets.mainPath}css`, `${config.assets.mainPath}js`];
 
