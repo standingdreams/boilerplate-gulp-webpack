@@ -67,7 +67,7 @@ export function compressImages() {
         imagemin.jpegtran({ progressive: true }),
         imageminPngquant({
           speed: 1,
-          quality: 98,
+          quality: [0.9, 1],
         }),
       ]),
     )
