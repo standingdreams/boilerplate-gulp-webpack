@@ -18,6 +18,7 @@ Mappy Breakpoints is included in this build to manage media query breakpoints. I
 webpack is being used to bundle all JavaScript modules. You can import JS dependencies at `/_src/index.js`.
 
 ## Future Considerations/To-Dos
+- [ ] Create variables for gulp and webpack to use
 - [ ] Add environment differences
 - [ ] Add if/else for serve in gulpfile.babel.js
 - [ ] Revisit .htaccess file
