@@ -1,11 +1,26 @@
+// $breakpoints: (
+//   "laptop": 1100px,
+//   "tablet-horiz": 1024px,
+//   "tablet-vert": 768px,
+//   "phone-horiz": 736px,
+//   "phone-horiz-small": 667px,
+//   "phone-horiz-tiny": 568px,
+//   "phone-medium": 414px,
+//   "phone-small": 375px,
+//   "phone-tiny": 320px
+// );
+
 $breakpoints: (
-  "laptop": 1100px,
-  "tablet-horiz": 1024px,
-  "tablet-vert": 768px,
-  "phone-horiz": 736px,
-  "phone-horiz-small": 667px,
-  "phone-horiz-tiny": 568px,
-  "phone-medium": 414px,
-  "phone-small": 375px,
-  "phone-tiny": 320px
-);
+  "small": (
+    min-width: 767px,
+  ),
+  "medium": (
+    min-width: 992px,
+  ),
+  "large": (
+    min-width: 1200px,
+  ),
+  "xlarge": (
+    min-width: 1375px,
+  ),
+) !default;
