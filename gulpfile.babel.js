@@ -64,7 +64,7 @@ export function compressImages() {
     .pipe(plumber())
     .pipe(
       imagemin([
-        imagemin.jpegtran({ progressive: true }),
+        imagemin.mozjpeg({ progressive: true }),
         imageminPngquant({
           speed: 1,
           quality: [0.9, 1],
